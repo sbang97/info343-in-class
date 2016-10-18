@@ -41,8 +41,12 @@ console.group("PRACTICE: Variables and Basic Types");
 //Create another variable named `y`, assign it the value
 //currently held in the variable `x`, and write the value
 //of `y` to the console log
+<<<<<<< HEAD
 var y = x;
 y = 10;
+=======
+
+>>>>>>> 0fa282f20fed3f7047c384a99b8e1a89f308e0bf
 
 //now assign `y` the numeric value 10
 //what does x contain now? Write it to the console
@@ -79,16 +83,24 @@ console.group("PRACTICE: Strings");
 //with some text, and then create another string `s4`
 //and assign it the concatenation of `s2` and `s3`
 //then write it to the console so you can verify it worked.
+<<<<<<< HEAD
 var s2 = "Hello"
 var s3 = "World"
 var s4 = s2 + s3;
 console.log(s4);
+=======
+
+>>>>>>> 0fa282f20fed3f7047c384a99b8e1a89f308e0bf
 
 //use the `.trim()` method to remove the leading and
 //trailing white space from this string
 var withSpaces = "    trim those spaces!     ";
+<<<<<<< HEAD
 var trimmedString = withSpaces.trim();
 console.log(trimmedString);
+=======
+
+>>>>>>> 0fa282f20fed3f7047c384a99b8e1a89f308e0bf
 
 console.groupEnd();
 
@@ -143,7 +155,11 @@ course.teacher = {
 console.log("after adding property:", course);
 
 //you can remove properties using delete
+<<<<<<< HEAD
 //delete course.teacher;
+=======
+delete course.teacher;
+>>>>>>> 0fa282f20fed3f7047c384a99b8e1a89f308e0bf
 console.log("after deleting property:", course);
 
 //you can test whether an object has a property using the
@@ -159,6 +175,7 @@ console.group("PRACTICE: Objects");
 //Create another object for one of your other courses
 //assigning it to a new variable named `course2`
 //use console.log() to view it in the browser console
+<<<<<<< HEAD
 var course2 = {
     curriculum: "INFO",
     name: "Database Management Systems",
@@ -170,6 +187,9 @@ var course2 = {
 
 course2["website"] = "google.com"
 console.log("course object 2:", course2);
+=======
+
+>>>>>>> 0fa282f20fed3f7047c384a99b8e1a89f308e0bf
 //now try adding a property named `web site` (with a space)
 //setting it to some string value...it's tricky...
 
@@ -213,14 +233,22 @@ console.group("PRACTICE: Arrays");
 //--PRACTICE--
 //create another array of playing card suits
 //(clubs, diamonds, hearts, spades)
+<<<<<<< HEAD
 var suits = ["Spades", "Clubs", "Diamonds" , "Hearts"];
 console.log(suits);
+=======
+
+>>>>>>> 0fa282f20fed3f7047c384a99b8e1a89f308e0bf
 
 //then add a new element named "jokers"
 //afer adding it, access it in the array
 //and log it to the console
+<<<<<<< HEAD
 suits.push("Jokers");
 console.log(suits[suits.length - 1]);
+=======
+
+>>>>>>> 0fa282f20fed3f7047c384a99b8e1a89f308e0bf
 
 
 console.groupEnd();
@@ -360,9 +388,12 @@ console.group("PRACTICE: Functions");
 //if they are equal to each other. Then call it a few times
 //with various numbers to test it.
 
+<<<<<<< HEAD
 function minimum(n1, n2) {
     return n2 < n1 ? n2 : n1;
 }
+=======
+>>>>>>> 0fa282f20fed3f7047c384a99b8e1a89f308e0bf
 
 console.groupEnd();
 
@@ -388,7 +419,11 @@ var logReversed = function(s) {
     logMe(reverseString(s)); 
 }
 console.log("quarters run through reverseString() and logMe()");
+<<<<<<< HEAD
 quarters.forEach(logMe);
+=======
+quarters.forEach(logReversed);
+>>>>>>> 0fa282f20fed3f7047c384a99b8e1a89f308e0bf
 
 //if you want to generate a new array, transforming each
 //element through a function, use .map()
@@ -437,6 +472,7 @@ function generateRandomNumbers(howMany, minimum, maximum) {
 }
 
 //>>> your code goes here!
+<<<<<<< HEAD
 function times2(n) {
     return n * 2;
 }
@@ -446,6 +482,9 @@ var times = nums.map(times2);
 console.log(times);
 var min = times.reduce(minimum)
 console.log(min);
+=======
+
+>>>>>>> 0fa282f20fed3f7047c384a99b8e1a89f308e0bf
 
 //now use the .sort() method on a generated array of random
 //numbers to sort them. Note that by default, sort will 
