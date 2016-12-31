@@ -7,13 +7,24 @@ var displayNameInput = document.getElementById("display-name-input");
 
 signUpForm.addEventListener("submit", function(evt) {
     evt.preventDefault();
-
     //use Firebase to create a new user
     //with the email and password
     //after the account is created, then use
     //the .updateProfile() method to set the display name
-
-
-
+    firebase.auth().createUserWithEmailAndPassword(emailInput.value, 
+    passwordInput.value)
+        .then(function(user) {
+            return user.updateProfile({
+                    displayName: displayNameInput.value
+            });
+        })
+        .then(function() {
+            window.location = "secure.html";
+        })
+        // .catch only called when fail or error
+        .catch(function(err) {
+            alert(err.message);
+        });
+        
     return false;
 });

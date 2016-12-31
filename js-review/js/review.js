@@ -135,7 +135,8 @@ var course = {
     curriculum: "INFO",
     num: 343,
     section: "D",
-    title: "Client-Side Web Development"
+    title: "Client-Side Web Development",
+    foobar: ""
 };
 
 console.log("I'm taking", course.curriculum, course.num);
@@ -190,12 +191,9 @@ console.log("property names:", propNames);
  * see https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach
  */
 
-
-
-
-
-
-
+propNames.forEach(function(name) {
+    console.log(name, " = ", course[name]);
+});
 
 //FYI, this is essentially how the .forEach()
 //method on arrays is implemented:
@@ -351,8 +349,17 @@ console.log("Total count", formatAsNumber(totalCount));
  * just reverse the logic in your compare function.
  */
 
+males.sort(function(record1, record2) {
+    return record1.count - record2.count;
+});
 
-
+var mostPopMales = males.slice(0, 11);
+console.log("most pop male records", mostPopMales);
+var mostPopMaleNames = males.map(function(rec) {
+    return rec.name;
+});
+console.log("most pop male names by array", mostPopMales);
+console.log("most pop male names as single string", mostpopMaleNames.join(","));
 /**
  * PRACTICE
  * There are many names in the BABYNAMES array that

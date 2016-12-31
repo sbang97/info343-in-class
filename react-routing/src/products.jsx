@@ -8,7 +8,10 @@ import React from "react";
 //simply by importing it's module name
 import "whatwg-fetch";
 
-const APIKEY = "...your api key...";
+// need the ./ in order to make sure that react doesn't look inside node_modules, basically means it's a local thing
+import Movie from "./movie.jsx";
+
+const APIKEY = "e51fd804736e53cd2e55680fafe45f18";
 const BASE_URL = "https://api.themoviedb.org/3"
 const DISCOVER_API = BASE_URL + "/discover/movie?api_key=" + APIKEY;
 const GENRES_API = BASE_URL + "/genre/movie/list?api_key=" + APIKEY;
@@ -21,11 +24,37 @@ export default class extends React.Component {
         this.state = {}
     }
 
+    componentDidMount() {
+        fetch(DISCOVER_API)
+            //asynchronous, essentially just returns response.json as a result of the function taking in response
+            .then(response => response.json())
+            //this assigns the state of the component to movie, and assigns data to it (aka the response.json)
+            .then(data => this.setState({movies: data}));
+    }
+
     render() {
+        var totalPages;
+        var movies;
+        if (this.state.movies) {
+            // this will calculate this total pages from the data
+            totalPages = (<p>{this.state.movies.total_pages} pages</p>)
+
+            // movies = [];
+            // // this constructs a Movie tag for each movie data that passes through
+            // this.state.movies.results.forEach(function(m) {
+            //     movies.push(<Movie key={m.id} movie={m} />);
+            // });
+
+            movies = this.state.movies.results.map(m => <Movie key={m.id} movie={m} />);
+
+
+        }
         return (
             <div className="container">
                 <h1>Products View</h1>
                 <p>some nifty products for sale</p>
+                {totalPages}
+                {movies}
             </div>
         );
     }

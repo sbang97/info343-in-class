@@ -23,7 +23,7 @@ var osmTiles = {
 //for a list of map styles supported by Mapbox, as well
 //as full documentation about their map tiles API
 var mapboxTiles = {
-    accessToken: "...paste your access token here...",
+    accessToken: "pk.eyJ1IjoiZHJzdGVhcm5zIiwiYSI6IjE5YjliZjM1NGFlY2JkNjVhZmZkOWM1ZWJlMDQxNDUzIn0.QLK51t4IUWV7JszGbl7krA",
     url: "https://api.tiles.mapbox.com/v4/{style}/{z}/{x}/{y}.png?access_token={accessToken}",
     attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
     styles: {
@@ -49,3 +49,53 @@ var seattleCoords = [47.61, -122.33];
 //other map styles may have different zoom ranges
 var defaultZoom = 13;
 
+var map = L.map(mapDiv).setView(seattleCoords, defaultZoom);
+L.tileLayer(mapboxTiles.url, {
+    attribution: mapboxTiles.attribution,
+    style: mapboxTiles.styles.streets,
+    accessToken: mapboxTiles.accessToken
+}).addTo(map);
+
+function onPosition(position) {
+    console.log(position);
+    var latlng = [position.coords.latitude, position.coords.longitude];
+    var marker = L.marker(latlng).addTo(map);
+    map.panTo(latlng);
+}
+
+function onPositionError(err) {
+    console.error(err);
+    alert(err.message);
+}
+
+if (navigator && navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(onPosition, onPositionError, {enableHighAccuracy: true});
+}
+
+function genMarkerPopup(record) {
+    var html = "<h2>" + record.type + "</h2>";
+    html += "<p>" + record.address + "</p>";
+    html += "<p>" + moment(record.datetime).fromNow() + "</p>";
+    return html;
+}
+
+fetch(seattle911API)
+    .then(function(response) {
+        return response.json();
+    })
+    .then(function(data) {
+        console.log(data);
+        data.forEach(function(record) {
+            var latlng = [record.latitude, record.longitude];
+            var marker = L.circleMarker(latlng, {
+                fillColor: "#F00",
+                color: "#F00",
+                fillOpacity: 0.5
+            }).addTo(map);
+            marker.bindPopup(genMarkerPopup(record));
+        });
+    })
+    .catch(function(err) {
+        console.error(err);
+        alert(err.message);
+    });

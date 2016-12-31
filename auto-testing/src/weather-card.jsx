@@ -17,7 +17,8 @@ export default class extends React.Component {
 				    	<p className="weather-text center-text weather-description">{this.props.data.weather[0].description}</p>					    	
 				    	<h2 className="weather-temp center-text">
 				    		<img className="weather-img" src={"http://openweathermap.org/img/w/" + this.props.data.weather[0].icon + ".png"} alt="" />
-				    		<span className="weather-temp">{this.props.data.main.temp} &#176;{this.props.fahrenheit ? 'F' : 'C'}</span>
+				    		<span className="weather-temp">{this.props.data.main.temp} 
+							&#176;{this.props.fahrenheit ? 'F' : 'C'}</span>
 				    	</h2>
 				    </div>
 				</div>
@@ -25,5 +26,22 @@ export default class extends React.Component {
 		}
 		return <p className="center-text loading-text">Loading</p>;
 	}
+   /*
+	static get propTypes() {
+		return {
+			fahrenheit: React.PropTypes.bool,
+			data: React.PropTypes.shape({
+				name: React.PropTypes.string,
+				main: React.PropTypes.shape({
+					temp: React.PropTypes.number
+				}),
+				weather: React.PropTypes.arrayOf(React.PropTypes.shape({
+					description: React.PropTypes.string
+				}))
+			})
+		};
+	}
+	*/
+
 }
 		
